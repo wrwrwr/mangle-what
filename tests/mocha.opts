@@ -1,0 +1,3 @@
+--ui tdd
+--require tests/mocha.js
+tests/**.jsx

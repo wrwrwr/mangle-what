@@ -1,0 +1,53 @@
+{
+    "name": "mangle-what",
+    "version": "0.0.1",
+    "description": "Find properties that are best mangling candidates.",
+    "author": "Wojtek Ruszczewski <mangle-what@wr.waw.pl>",
+    "keywords": ["minification", "mangle", "remove", "properties"],
+    "scripts": {
+        "build": "webpack --env=p",
+        "test": "eslint . --ext=js --ext=jsx && mocha --opts tests/mocha.opts",
+        "prepublish": "npm run build && npm test"
+    },
+    "main": "dist/main.es5.js",
+    "main:es5": "dist/main.es5.js",
+    "main:es6": "dist/main.es6.js",
+    "main:es7": "main.jsx",
+    "bin" : "./bin/mangle-what.js",
+    "preferGlobal": true,
+    "dependencies": {
+        "easy-table": "^1.0.0",
+        "uglify-js": "2.6.2",
+        "yargs": "^4.1.0"
+    },
+    "webpack": {
+        "library": "MangleWhat",
+        "target": "node",
+        "externals": {
+            "easy-table": "commonjs easy-table",
+            "fs": "commonjs fs",
+            "uglify-js": "commonjs uglify-js",
+            "yargs": "commonjs yargs"
+        },
+        "optimize": {
+            "//": "Negligible savings, just for example purposes.",
+            "props": {
+                "mangle": [
+                    "overheadRelative",
+                    "occurrences",
+                    "overhead"
+                ],
+                "remove": [
+                ]
+            }
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wrwrwr/mangle-what"
+    },
+    "bugs": {
+        "url": "https://github.com/wrwrwr/mangle-what/issues"
+    },
+    "license": "MIT"
+}
